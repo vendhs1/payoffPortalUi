@@ -9,6 +9,7 @@ import {JwtInterceptor} from "./helpers/jwt-interceptor";
 import {ErrorInterceptor} from "./helpers/error-interceptor";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import {PayoffService} from "./services/payoffService/payoff.service"
 import {AuthenticationService} from "./services/authentication/authentication.service"
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +22,7 @@ import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent, RegisterComponent, HeaderComponent],
-  providers: [AuthGuard, AuthenticationService,
+  providers: [AuthGuard, AuthenticationService, PayoffService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true }

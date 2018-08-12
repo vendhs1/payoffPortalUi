@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import {Observable} from "rxjs/index";
+import {AccountInfo} from "../../models/accountInfo";
 
 
 @Injectable()
 export class PayoffService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  login(lender: string, identifier: string, identifierValue: string, customerConsent: boolean) {
+  retrieveAccountDetails(lender: string, identifier: string, identifierValue: string, customerConsent: boolean): Observable<AccountInfo> {
 
-    return this.http.get()<any>(`/quote/searchAccount?lender`, { username: username, password: password })
-      .pipe(map(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+    let requestUrl = '/account?lender='+lender+'&identifier='+identifier+'&identifierValue='+identifierValue+'&customerConsent='+customerConsent;
+
+    return this.http.get(requestUrl)
+      .pipe(map((res: Response) => {
+        if (res['customerInfo'] && res['vehicleInfo']) {
+          const accountInfo = new AccountInfo();
+          accountInfo = res;
+          return accountInfo;
+        } else {
+          return null;
         }
-
-        return user;
       }));
   }
-
 }

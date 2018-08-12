@@ -53,6 +53,38 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
       }
 
+      if (request.url.startsWith('/account?lender') && request.method === 'GET') {
+
+        let body = {
+          "customerInfo":
+            {
+              "firstName": "Sharon",
+              "lastName": "Long",
+              "address":
+                {
+                  "addressLine1": "8850 Whitney Drive",
+                  "addressLine2": "",
+                  "city": "Lewis Center",
+                  "state": "OH",
+                  "zipcode": "43035"
+                }
+            },
+          "vehicleInfo":
+            {
+              "vin": "WP0AA2A73BL011889",
+              "year": "2016",
+              "make": "Honda",
+              "model": "Accord",
+              "trim": "",
+              "lienHolder": "Huntington Bank",
+              "accountNumber": "021000021"
+            }
+        };
+
+        return of(new HttpResponse({ status: 200, body: body }));
+      }
+
+
       // pass through any requests not handled above
       return next.handle(request);
 

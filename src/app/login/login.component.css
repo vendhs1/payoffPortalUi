@@ -1,0 +1,13 @@
+.outer_container{
+    background-color:#364150;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.inner_container{
+    background-color:white;
+    max-width: 40% !important;
+    padding: 30px;
+    
+}

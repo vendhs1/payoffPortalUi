@@ -1,0 +1,19 @@
+.app_content {
+    height: 900px;
+    display: flex;
+    overflow: auto;
+}
+.app_content .left_pane{
+      height: 100%;
+      color:white;
+      width:20%;
+      background-color:#364150;
+    }
+.app_content .right_pane {
+    height: 100%; 
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    
+}
+  

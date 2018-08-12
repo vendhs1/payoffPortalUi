@@ -17,9 +17,10 @@ import {AuthGuard} from "./guard/auth.guard";
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, RegisterComponent, HeaderComponent],
   providers: [AuthGuard, AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

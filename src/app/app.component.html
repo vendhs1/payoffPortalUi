@@ -1,9 +1,16 @@
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 offset-sm-3">
-        <router-outlet></router-outlet>
-      </div>
+<ng-container *ngIf="isLoggedIn">
+  <app-header></app-header>
+  <div class="app_content">
+    <div class="left_pane">
+      <div>Left Pane</div> 
+    </div>
+
+    <div class="right_pane">
+      <router-outlet></router-outlet>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-container *ngIf="!isLoggedIn">
+  <app-login></app-login>
+</ng-container>

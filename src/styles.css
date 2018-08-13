@@ -1,3 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  font-size: .875rem;
+}
+
+.feather-send {
+  height: 50px;
+  width: 50px;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}

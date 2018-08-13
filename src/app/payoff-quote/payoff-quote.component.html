@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Payoff Quotes</h1>
+</div>
+
+<ng-container *ngIf="!accountConfirmation">
+  <div class="card">
+    <div class="card-header text-center" style="font-weight: bold">Request a Payoff Quote</div>
+    <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
+      <div class="card-body" style="padding-top: 20px">
+        <div class="form-row">
+          <div class="col-6">
+            <div class="form-group"> <!-- State Button -->
+              <label for="lender" class="control-label">Lender</label>
+              <select class="form-control" id="lender" formControlName="lender" [ngClass]="{ 'is-invalid': submitted && f.lender.errors }">
+                <option value="">Select Lender</option>
+                <option value="Huntington National Bank">New Alliance Bank</option>
+                <option value="Chase">First Choice Bank Group</option>
+                <option value="Bank of America">Crown Trust Corp.</option>
+              </select>
+              <div *ngIf="submitted && f.lender.errors" class="invalid-feedback">
+                <div *ngIf="f.lender.errors.required">Lender Name is required</div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="customer_info" class="control-label">Customer Identifier</label>
+              <select class="form-control" id="customer_info" formControlName="identifier" [ngClass]="{ 'is-invalid': submitted && f.identifier.errors }">
+                <option value="ssn">Social Security Number</option>
+              </select>
+              <div *ngIf="submitted && f.identifier.errors" class="invalid-feedback">
+                <div *ngIf="f.identifier.errors.required">Customer Identifier Required</div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="customer_info_value" class="control-label">Social Security Number</label>
+              <input type="password" class="form-control" id="customer_info_value" name="customer_info_value" maxlength="9" formControlName="identifierValue" [ngClass]="{ 'is-invalid': submitted && f.identifierValue.errors }">
+              <div *ngIf="submitted && f.identifierValue.errors" class="invalid-feedback">
+                <div *ngIf="f.identifierValue.errors.required">Customer Identifier Value is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-xs-3 control-label">Terms of use</label>
+          <div class="col-xs-9">
+            <div style="border: 1px solid #e5e5e5; height: 60px; overflow: auto; padding: 10px; background-color: white">
+              <p>Lender cannot disclose any customer's payoff information without the customer's consent. When I, the dealer, click on the "Customer Quote" button, I acknowledge and agree that I have received the customer's consent to obtain this payoff information from Lender. </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6 col-xs-offset-3">
+            <label class="control-label">
+              <input type="checkbox" name="agree" value="agree" formControlName="customerConsent" [ngClass]="{ 'is-invalid': submitted && f.customerConsent.errors }" /> I acknowledge and agree that I have received the customer's consent to obtain this payoff information from Lender.
+              <div *ngIf="submitted && f.customerConsent.errors" class="invalid-feedback">
+                <div *ngIf="f.customerConsent.errors.required">Please agree to Terms of Use</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted text-center">
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Customer Quote</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="accountConfirmation">
+
+  <div class="card text-center">
+    <div class="card-header" style="font-weight: bold">Is this the correct account?</div>
+    <div class="card-body"></div>
+    <div class="card-footer text-muted">
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+

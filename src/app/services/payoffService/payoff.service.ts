@@ -17,7 +17,7 @@ export class PayoffService {
     return this.http.get(requestUrl)
       .pipe(map((res: Response) => {
         if (res['customerInfo'] && res['vehicleInfo']) {
-          const accountInfo = new AccountInfo();
+          let accountInfo = new AccountInfo();
           accountInfo = res;
           return accountInfo;
         } else {

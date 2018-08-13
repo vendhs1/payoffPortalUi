@@ -1,14 +1,19 @@
 <ng-container *ngIf="isLoggedIn">
   <app-header></app-header>
-  <div class="app_content">
-    <div class="left_pane">
-      <div>Left Pane</div> 
-    </div>
 
-    <div class="right_pane">
-      <router-outlet></router-outlet>
+  <div class="container-fluid">
+    <div class="row">
+      <app-side-bar></app-side-bar>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <router-outlet></router-outlet>
+      </main>
+
     </div>
   </div>
+
+
+
 </ng-container>
 
 <ng-container *ngIf="!isLoggedIn">

@@ -1,72 +1,76 @@
-<ng-container *ngIf="!accountConfirmation">
-<div class="container">
-  <h1 class = "headerClass">Payoff Request Form</h1>
-  <form [formGroup]="quoteForm" (ngSubmit)="onSubmit()">
-
-    <div class="form-group"> <!-- State Button -->
-      <label for="lender" class="control-label">Lenders</label>
-      <select class="form-control" id="lender" formControlName="lender" [ngClass]="{ 'is-invalid': submitted && f.lender.errors }">
-        <option value="">Select Lender</option>
-        <option value="Huntington National Bank">Huntington National Bank</option>
-        <option value="Chase">Chase</option>
-        <option value="Bank of America">Bank of America</option>
-      </select>
-      <div *ngIf="submitted && f.lender.errors" class="invalid-feedback">
-        <div *ngIf="f.lender.errors.required">Lender Name is required</div>
-      </div>
-
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Dashboard</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-secondary">Export</button>
+      <button class="btn btn-sm btn-outline-secondary">Print</button>
     </div>
-
-    <div class="form-group">
-      <label for="customer_info" class="control-label">Customer Identifier</label>
-      <select class="form-control" id="customer_info" formControlName="identifier" [ngClass]="{ 'is-invalid': submitted && f.identifier.errors }">
-        <option value="ssn">Social Security Number</option>
-      </select>
-      <div *ngIf="submitted && f.identifier.errors" class="invalid-feedback">
-        <div *ngIf="f.identifier.errors.required">Customer Identifier Required</div>
-      </div>
-
-    </div>
-
-    <div class="form-group">
-      <label for="customer_info_value" class="control-label">Social Security Number</label>
-      <input type="password" class="form-control" id="customer_info_value" name="customer_info_value" maxlength="9" formControlName="identifierValue" [ngClass]="{ 'is-invalid': submitted && f.identifierValue.errors }">
-      <div *ngIf="submitted && f.identifierValue.errors" class="invalid-feedback">
-        <div *ngIf="f.identifierValue.errors.required">Customer Identifier Value is required</div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-xs-3 control-label">Terms of use</label>
-      <div class="col-xs-9">
-        <div style="border: 1px solid #e5e5e5; height: auto; overflow: auto; padding: 10px; background-color: white">
-          <p>Lender cannot disclose any customer's payoff information without the customer's consent. When I, the dealer, click on the "Customer Quote" button. </p>
-          <p>  I acknowledge and agree that I have received the customer's consent to obtain this payoff information from Lender. </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-xs-6 col-xs-offset-3">
-        <label class="control-label">
-          <input type="checkbox" name="agree" value="agree" formControlName="customerConsent" [ngClass]="{ 'is-invalid': submitted && f.customerConsent.errors }" /> I acknowledge and agree that I have received the customer's consent to obtain this payoff information from Lender.
-          <div *ngIf="submitted && f.customerConsent.errors" class="invalid-feedback">
-            <div *ngIf="f.customerConsent.errors.required">Please agree to Terms of Use</div>
-          </div>
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group submitButton">
-      <button type="submit" class="btn btn-primary">Customer Quote</button>
-    </div>
-
-  </form>
-
+    <button (click)="getPayoffQuote()" class="btn btn-sm btn-outline-secondary">Obtain a Payoff Quote </button>
+  </div>
 </div>
-</ng-container>
 
-  <ng-container *ngIf=accountConfirmation>
-  </ng-container>
-
-
+<h6>Requested Quotes</h6>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Lien Holder</th>
+      <th>VIN</th>
+      <th>Good Until</th>
+      <th>Net Payoff Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Retail</td>
+      <td>Lorem</td>
+      <td>ipsum</td>
+      <td>dolor</td>
+      <td>sit</td>
+    </tr>
+    <tr>
+      <td>Retail</td>
+      <td>amet</td>
+      <td>consectetur</td>
+      <td>adipiscing</td>
+      <td>elit</td>
+    </tr>
+    <tr>
+      <td>Commercial</td>
+      <td>Integer</td>
+      <td>nec</td>
+      <td>odio</td>
+      <td>Praesent</td>
+    </tr>
+    <tr>
+      <td>Retail</td>
+      <td>libero</td>
+      <td>Sed</td>
+      <td>cursus</td>
+      <td>ante</td>
+    </tr>
+    <tr>
+      <td>Retail</td>
+      <td>Lorem</td>
+      <td>ipsum</td>
+      <td>dolor</td>
+      <td>sit</td>
+    </tr>
+    <tr>
+      <td>Retail</td>
+      <td>amet</td>
+      <td>consectetur</td>
+      <td>adipiscing</td>
+      <td>elit</td>
+    </tr>
+    <tr>
+      <td>Commercial</td>
+      <td>Integer</td>
+      <td>nec</td>
+      <td>odio</td>
+      <td>Praesent</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

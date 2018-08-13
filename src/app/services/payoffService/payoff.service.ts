@@ -16,9 +16,25 @@ export class PayoffService {
 
     return this.http.get(requestUrl)
       .pipe(map((res: Response) => {
-        if (res['customerInfo'] && res['vehicleInfo']) {
+        if (res['account']) {
           let accountInfo = new AccountInfo();
-          accountInfo = res;
+          accountInfo = res['account'];
+          return accountInfo;
+        } else {
+          return null;
+        }
+      }));
+  }
+
+  getPayoffQuote(lender: string, identifier: string, identifierValue: string, customerConsent: boolean): Observable<AccountInfo> {
+
+    let requestUrl = '/payoffQuote?lender='+lender+'&identifier='+identifier+'&identifierValue='+identifierValue+'&customerConsent='+customerConsent;
+
+    return this.http.get(requestUrl)
+      .pipe(map((res: Response) => {
+        if (res['quote']) {
+          let accountInfo = new AccountInfo();
+          accountInfo = res['quote'];
           return accountInfo;
         } else {
           return null;

@@ -56,33 +56,79 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (request.url.startsWith('/account?lender') && request.method === 'GET') {
 
         let body = {
-          "customerInfo":
+          "account":
             {
-              "firstName": "Sharon",
-              "lastName": "Long",
-              "address":
+              "customerInfo":
                 {
-                  "addressLine1": "8850 Whitney Drive",
-                  "addressLine2": "",
-                  "city": "Lewis Center",
-                  "state": "OH",
-                  "zipcode": "43035"
+                  "firstName": "Sharon",
+                  "lastName": "Long",
+                  "address":
+                    {
+                      "addressLine1": "8850 Whitney Drive",
+                      "addressLine2": "",
+                      "city": "Lewis Center",
+                      "state": "OH",
+                      "zipcode": "43035"
+                    }
+                },
+              "vehicleInfo":
+                {
+                  "vin": "WP0AA2A73BL011889",
+                  "year": "2016",
+                  "make": "Honda",
+                  "model": "Accord",
+                  "trim": "",
+                  "lienHolder": "Huntington Bank",
+                  "accountNumber": "021000021"
                 }
-            },
-          "vehicleInfo":
-            {
-              "vin": "WP0AA2A73BL011889",
-              "year": "2016",
-              "make": "Honda",
-              "model": "Accord",
-              "trim": "",
-              "lienHolder": "Huntington Bank",
-              "accountNumber": "021000021"
             }
         };
 
         return of(new HttpResponse({ status: 200, body: body }));
       }
+
+      if (request.url.startsWith('/payoffQuote?lender') && request.method === 'GET') {
+
+        let body = {
+          "quote":
+            {
+              "customerInfo":
+                {
+                  "firstName": "Sharon",
+                  "lastName": "Long",
+                  "address":
+                    {
+                      "addressLine1": "8850 Whitney Drive",
+                      "addressLine2": "",
+                      "city": "Lewis Center",
+                      "state": "OH",
+                      "zipcode": "43035"
+                    }
+                },
+              "vehicleInfo":
+                {
+                  "vin": "WP0AA2A73BL011889",
+                  "year": "2016",
+                  "make": "Honda",
+                  "model": "Accord",
+                  "trim": "",
+                  "lienHolder": "Huntington Bank",
+                  "accountNumber": "021000021"
+                },
+              "paymentInformation":
+                {
+                  "product": "Retail",
+                  "netPayoffAmt": "23,723.48",
+                  "goodUntilDate": "08/07/2018",
+                  "monthlyPayment": "606.07",
+                  "dollarDayRate": "5.165"
+                }
+            }
+        };
+
+        return of(new HttpResponse({ status: 200, body: body }));
+      }
+
 
 
       // pass through any requests not handled above

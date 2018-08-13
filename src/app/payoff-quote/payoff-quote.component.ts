@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import {PayoffService} from "../services/payoffService/payoff.service";
+import {AccountInfo} from "../models/accountInfo";
 
 @Component({
   selector: 'app-payoff-quote',
@@ -13,6 +14,7 @@ export class PayoffQuoteComponent implements OnInit {
   quoteForm: FormGroup;
   accountConfirmation: boolean;
   submitted = false;
+  accountInfo: AccountInfo;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private payOffService: PayoffService) {}
 
@@ -40,8 +42,24 @@ export class PayoffQuoteComponent implements OnInit {
     this.payOffService.retrieveAccountDetails(this.f.lender.value, this.f.identifier.value, this.f.identifierValue.value, this.f.customerConsent.value)
       .subscribe(
         data => {
-          console.log(data);
+          this.accountInfo = new AccountInfo();
+          this.accountInfo = data;
           this.accountConfirmation = true;
+        },
+        error => {
+          // this.loading = false;
+        });
+
+  }
+
+  getPayOffQuote() {
+    console.log('getPayoffQuote');
+    this.payOffService.getPayoffQuote(this.f.lender.value, this.f.identifier.value, this.f.identifierValue.value, this.f.customerConsent.value)
+      .subscribe(
+        data => {
+          this.accountInfo = new AccountInfo();
+          this.accountConfirmation = false;
+          this.accountInfo = data;
         },
         error => {
           // this.loading = false;

@@ -59,7 +59,9 @@ export class PayoffQuoteComponent implements OnInit {
         data => {
           this.accountInfo = new AccountInfo();
           this.accountConfirmation = false;
+          console.log(data);
           this.accountInfo = data;
+          console.log(this.accountInfo);
         },
         error => {
           // this.loading = false;

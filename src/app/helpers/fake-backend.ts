@@ -115,13 +115,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                   "lienHolder": "Huntington Bank",
                   "accountNumber": "021000021"
                 },
-              "paymentInformation":
+              "paymentInfo":
                 {
                   "product": "Retail",
-                  "netPayoffAmt": "23,723.48",
+                  "netPayoffAmt": "$ 23,723.48",
                   "goodUntilDate": "08/07/2018",
-                  "monthlyPayment": "606.07",
-                  "dollarDayRate": "5.165"
+                  "monthlyPayment": "$ 606.07",
+                  "dollarDayRate": "$ 5.165"
                 }
             }
         };

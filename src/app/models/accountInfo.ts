@@ -5,5 +5,5 @@ import {PaymentInfo} from "./paymentInfo";
 export class AccountInfo {
   customerInfo: CustomerInfo;
   vehicleInfo: VehicleInfo;
-  paymentInfo: PaymentInfo
+  paymentInfo: PaymentInfo;
 }

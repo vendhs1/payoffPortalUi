@@ -8,6 +8,7 @@ import {PayoffQuoteComponent} from "./payoff-quote/payoff-quote.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: HomeComponent },
   { path: 'payoffQuote', component: PayoffQuoteComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

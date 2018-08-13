@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Payoff Quotes</h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-toolbar mb-2 mb-md-0" *ngIf="!accountConfirmation && accountInfo">
     <button class="btn btn-sm btn-outline-secondary">Download Payoff Instructions </button>
   </div>
 </div>
@@ -15,10 +15,11 @@
             <div class="form-group"> <!-- State Button -->
               <label for="lender" class="control-label">Lender</label>
               <select class="form-control" id="lender" formControlName="lender" [ngClass]="{ 'is-invalid': submitted && f.lender.errors }">
-                <option value="">Select Lender</option>
-                <option value="Huntington National Bank">New Alliance Bank</option>
-                <option value="Chase">First Choice Bank Group</option>
-                <option value="Bank of America">Crown Trust Corp.</option>
+                <option value="">Select</option>
+                <option value="huntingtonBank">Huntington Bank</option>
+                <option value="jpmChase">JP Morgan Chase</option>
+                <option value="fifthThirdBank">Fifth Third Bank</option>
+                <option value="boa">Bank of America</option>
               </select>
               <div *ngIf="submitted && f.lender.errors" class="invalid-feedback">
                 <div *ngIf="f.lender.errors.required">Lender Name is required</div>
@@ -28,9 +29,9 @@
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="customer_info" class="control-label">Customer Identifier</label>
+              <label for="customer_info" class="control-label">Identifier</label>
               <select class="form-control" id="customer_info" formControlName="identifier" [ngClass]="{ 'is-invalid': submitted && f.identifier.errors }">
-                <option value="ssn">Social Security Number</option>
+                <option value="vin">Vehicle Identification Number</option>
               </select>
               <div *ngIf="submitted && f.identifier.errors" class="invalid-feedback">
                 <div *ngIf="f.identifier.errors.required">Customer Identifier Required</div>
@@ -40,7 +41,7 @@
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="customer_info_value" class="control-label">Social Security Number</label>
+              <label for="customer_info_value" class="control-label">Identifier Value</label>
               <input type="password" class="form-control" id="customer_info_value" name="customer_info_value" maxlength="9" formControlName="identifierValue" [ngClass]="{ 'is-invalid': submitted && f.identifierValue.errors }">
               <div *ngIf="submitted && f.identifierValue.errors" class="invalid-feedback">
                 <div *ngIf="f.identifierValue.errors.required">Customer Identifier Value is required</div>
@@ -81,7 +82,7 @@
 <ng-container *ngIf="accountConfirmation">
 
   <div class="card">
-    <div class="card-header text-center" style="font-weight: bold">Is this the correct account?</div>
+    <div class="card-header text-center" style="font-weight: bold;color: red">Is this the correct account?</div>
     <div class="card-body">
 
       <div class="row">
@@ -178,11 +179,11 @@
 
     <div class="card-footer text-muted text-center">
       <div class="row">
-        <div class="col-10 col-sm-5 col-md-5">
+        <div class="col-10 col-sm-5 col-md-7">
           <button class="btn btn-secondary" type="submit">Cancel </button>
         </div>
-        <div class="col-10 col-sm-5 col-md-5">
-          <button class="btn btn-primary" (click)="getPayOffQuote()" >Get Payoff Quote </button>
+        <div class="col-10 col-sm-5 col-md-2">
+          <button class="btn btn-primary" (click)="getPayOffQuote()" >Confirm </button>
         </div>
       </div>
     </div>

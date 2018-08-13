@@ -12,7 +12,7 @@ import {PayoffService} from "../services/payoffService/payoff.service";
 export class HomeComponent implements OnInit {
 
   quoteForm: FormGroup;
-  showFurther: boolean;
+  accountConfirmation: boolean;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private payOffService: PayoffService) {}
 
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.payOffService.retrieveAccountDetails(this.f.lender, this.f.identifier, this.f.identifierValue, this.f.customerConsent)
       .subscribe(
         data => {
-          this.showFurther = true;
+          this.accountConfirmation = true;
         },
         error => {
           this.loading = false;

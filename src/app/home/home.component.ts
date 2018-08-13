@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import {PayoffService} from "../services/payoffService/payoff.service";
 
 @Component({
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   quoteForm: FormGroup;
   accountConfirmation: boolean;
+  submitted = false;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private payOffService: PayoffService) {}
 
@@ -37,13 +39,13 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.payOffService.retrieveAccountDetails(this.f.lender, this.f.identifier, this.f.identifierValue, this.f.customerConsent)
+    this.payOffService.retrieveAccountDetails(this.f.lender.value, this.f.identifier.value, this.f.identifierValue.value, this.f.customerConsent.value)
       .subscribe(
         data => {
           this.accountConfirmation = true;
         },
         error => {
-          this.loading = false;
+          // this.loading = false;
         });
 
   }

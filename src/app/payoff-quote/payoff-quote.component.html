@@ -1,3 +1,4 @@
+<ngx-spinner bdColor = "rgba(178,144,130,0)" size = "large" color = "#f58332" type = "line-spin-clockwise-fade"></ngx-spinner>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Payoff Quotes</h1>
   <div class="btn-toolbar mb-2 mb-md-0" *ngIf="!accountConfirmation && accountInfo">
@@ -134,8 +135,6 @@
               </div>
               <span class="text-muted">{{accountInfo.customerInfo.address.zipcode}}</span>
             </li>
-
-
           </ul>
         </div>
 
@@ -194,7 +193,7 @@
     <div class="card-footer text-muted text-center">
       <div class="row">
         <div class="col-10 col-sm-5 col-md-7">
-          <button class="btn btn-secondary" type="submit">Cancel </button>
+          <button class="btn btn-secondary" [routerLink]="['/dashboard']" type="submit">Cancel </button>
         </div>
         <div class="col-10 col-sm-5 col-md-2">
           <button class="btn btn-primary" (click)="getPayOffQuote()" >Confirm </button>

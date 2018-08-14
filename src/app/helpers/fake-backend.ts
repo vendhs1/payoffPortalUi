@@ -39,10 +39,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
           let body = {
             id: 123,
-            username: "sakthiyaV",
-            firstName: "sakthiya ",
-            lastName: "palaniswamy",
-            token: 'fake-jwt-token'
+            username: "markKFields",
+            firstName: "Mark ",
+            lastName: "Fields",
+            token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6ImZmNTJkMjE1LTRkYTYtNGI5Yy1hOTU1LTlhMWQ2Y2IzNjE4MSIsImlhdCI6MTUzNDIwNzc3MCwiZXhwIjoxNTM0MjExMzcwfQ.LHV_fHV92hc2TrFCPjOYnt8S0Mteq7EYhuveEvBN8nk'
           };
 
           return of(new HttpResponse({ status: 200, body: body }));
@@ -138,7 +138,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
       .pipe(materialize())
-      .pipe(delay(500))
+      .pipe(delay(2000))
       .pipe(dematerialize());
   }
 }

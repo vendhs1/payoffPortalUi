@@ -3,6 +3,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {IconsModule} from "./icons/icons/icons.module";
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FakeBackendInterceptor} from "./helpers/fake-backend";
@@ -30,7 +31,7 @@ import { PayoffQuoteComponent } from './payoff-quote/payoff-quote.component';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true }
   ],
-  imports: [ NgbModule.forRoot(), BrowserModule, IconsModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+  imports: [ NgbModule.forRoot(), BrowserModule, NgxSpinnerModule, IconsModule, AppRoutingModule, BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

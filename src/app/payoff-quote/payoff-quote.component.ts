@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import {PayoffService} from "../services/payoffService/payoff.service";
 import {AccountInfo} from "../models/accountInfo";
@@ -16,7 +17,7 @@ export class PayoffQuoteComponent implements OnInit {
   submitted = false;
   accountInfo: AccountInfo;
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private payOffService: PayoffService) {}
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private payOffService: PayoffService, private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
     this.quoteForm = this.formBuilder.group({
@@ -38,13 +39,14 @@ export class PayoffQuoteComponent implements OnInit {
     if (this.quoteForm.invalid) {
       return;
     }
-
+    this.spinner.show();
     this.payOffService.retrieveAccountDetails(this.f.lender.value, this.f.identifier.value, this.f.identifierValue.value, this.f.customerConsent.value)
       .subscribe(
         data => {
           this.accountInfo = new AccountInfo();
           this.accountInfo = data;
           this.accountConfirmation = true;
+          this.spinner.hide();
         },
         error => {
           // this.loading = false;
@@ -53,15 +55,14 @@ export class PayoffQuoteComponent implements OnInit {
   }
 
   getPayOffQuote() {
-    console.log('getPayoffQuote');
+    this.spinner.show();
     this.payOffService.getPayoffQuote(this.f.lender.value, this.f.identifier.value, this.f.identifierValue.value, this.f.customerConsent.value)
       .subscribe(
         data => {
           this.accountInfo = new AccountInfo();
           this.accountConfirmation = false;
-          console.log(data);
           this.accountInfo = data;
-          console.log(this.accountInfo);
+          this.spinner.hide();
         },
         error => {
           // this.loading = false;
